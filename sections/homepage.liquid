@@ -1,4 +1,28 @@
-<div class="homepage">
-  <h1>Welcome to Shopify Theme Development</h1>
-  <p>{% render 'homepage-text' %}</p>
-</div>
+{% case template %}
+  {% when 'index' %}
+    <h1>Welcome to the Store</h1>
+    <p>Explore our latest collections and featured products.</p>
+  {% when 'product' %}
+    <div class="product-page-header">
+      <h1>{{ product.title |  escape }}</h1>
+      <p>Detailed information about our unique product</p>
+    </div>
+  {% when 'collection' %}
+    <div class="collection-header">
+      <h1>{{ collection.title }}</h1>
+      <p>{{ collection.description }}</p>
+      <span>Total Product: {{ collection.all_products_count }}</span>
+    </div>
+  {% when 'cart' %}
+    <h1>Your Shopping cart</h1>
+    <p>Review and modify your selected items</p>
+  {% when 'cart' %}
+    <h1>Search Results</h1>
+    <p>Found {{ search.results.size }} results for "{{ search.terms }}"</p>
+
+  {% else %}
+    <h1>{{ page.title }}</h1>
+{% endcase %}
+
+
+

@@ -1,0 +1,50 @@
+{% assign featured_collection = section.settings.featured_product_collection %}
+
+<div class="featured-products-section">
+  <div class="featured-products-header">
+    <h2>Featured Products</h2>
+    <p>Check out our most popular products, handpicked just for you!</p>
+  </div>
+
+  <div class="featured-products-grid">
+    {% for product in featured_collection.products %}
+      <div class="featured-product-card">
+        <a href="{{product.url}}" class="product-link">
+          <img
+            src="{{product.featured_image.src |  image_url: width: 200 }}"
+            alt="{{product.featured_image.alt |  escape}}"
+            class="product-image"
+            width="200"
+            height=""
+          >
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title }}</h3>
+            <p class="product-price">{{ product.price | money }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+
+    <!-- Repeat Product Cards as needed -->
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "featured-products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "featured_product_collection",
+      "label": "Select a collection",
+      "default": "featured"
+    },
+    {
+      "type": "number",
+      "id": "products_to_show",
+      "label": "Number of products to Display",
+      "default": 5
+    }
+  ]
+}
+{% endschema %}

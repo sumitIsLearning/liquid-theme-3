@@ -17,7 +17,7 @@
               </a>
             </td>
             <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              {% comment %} <a href="{{ item.url }}">{{ item.product.title }}</a> {% endcomment %}
               {{ item.variant.title }}
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
             </td>
